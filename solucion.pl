@@ -1,4 +1,4 @@
-% Solución en Prolog
+% Aquí va el código.
 vive(juan, almagro, casa(120)).
 vive(nico, almagro, departamento(3, 2)).
 vive(alf, almagro, departamento(3, 1)).
@@ -68,9 +68,12 @@ cuantoPagaron(Propietarios, Precio):-
 todosLosPropietarios(Propietarios):-
     findall(Propietario, vive(Propietario,_,_), Propietarios).
 
-seLesPuedeComprar(Presupuesto, Propietarios, Restante):-
+listaDePropietarios(Propietarios):-
     todosLosPropietarios(PosiblesProp),
-    sublista(PosiblesProp, Propietarios),
+    sublista(PosiblesProp, Propietarios).
+
+seLesPuedeComprar(Presupuesto, Propietarios, Restante):-
+    listaDePropietarios(Propietarios),
     cuantoPagaron(Propietarios, Precio),
     Presupuesto >= Precio,
     Restante is Presupuesto - Precio.
